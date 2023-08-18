@@ -9,11 +9,11 @@
         <span>by</span>
 
         <a
-            href="https://github.com/Kamona-WD"
+            href="https://github.com/0xyzone"
             target="_blank"
             class="text-blue-600 hover:underline"
         >
-            Ahmed Kamel
+            OxyZone
         </a>
     </p>
 </footer>
