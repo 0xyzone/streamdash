@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SceneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,5 @@ Route::get('/demo', function() {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/start/{tournament}', [SceneController::class, 'start'])->name('start');
