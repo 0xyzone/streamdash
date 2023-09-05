@@ -11,8 +11,13 @@ class Tournament extends Model
 
     protected $fillable = [
         'name',
+        'color',
         'start_date',
         'end_date',
-        'color'
+    ];
+
+    protected $dates = [
+        'start_date',
+        'end_date',
     ];
 }

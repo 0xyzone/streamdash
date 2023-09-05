@@ -10,6 +10,12 @@
         </x-slot>
     </x-sidebar.link>
 
+    <x-sidebar.link title="Tournaments" href="{{ route('tournaments.index') }}" :isActive="request()->routeIs(['tournaments.index', 'tournaments.create', 'tournaments.edit'])">
+        <x-slot name="icon">
+            <x-eos-sports-esports-o class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+    </x-sidebar.link>
+
     <x-sidebar.dropdown title="Buttons" :active="Str::startsWith(
         request()
             ->route()
