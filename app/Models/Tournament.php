@@ -14,6 +14,7 @@ class Tournament extends Model
         'color',
         'start_date',
         'end_date',
+        'logo',
     ];
 
     protected $dates = [

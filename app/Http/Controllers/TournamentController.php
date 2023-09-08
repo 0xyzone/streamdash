@@ -33,7 +33,12 @@ class TournamentController extends Controller
     {
         $formFields = $request->validated();
         $formFields['end_date'] = $request['ending'];
-        // dd($formFields);
+        dd($formFields);
+        if($request->hasFile('logo')){
+            $formFields['logo'] = $request->file('logo')->store('logos','public');
+        }
+
+
         Tournament::create($formFields);
 
         return redirect(route('tournaments.index'))->with('success', 'Tournament created successfully');

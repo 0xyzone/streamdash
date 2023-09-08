@@ -24,8 +24,9 @@ class TourneyRequest extends FormRequest
         return [
             'name' => 'required',
             'start_date' => 'required',
-            'ending' => 'required',
+            'ending' => 'required|date|after:start_date',
             'color' => '',
+            'logo' => 'image'
         ];
     }
 
@@ -33,6 +34,7 @@ class TourneyRequest extends FormRequest
     {
         return [
             'ending.required' => 'The end date field is required',
+            'ending.after' => 'The ending date should be later than the start date.'
         ];
     }
 }
