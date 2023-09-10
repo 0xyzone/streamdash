@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FetchDetails;
 use App\Http\Requests\TourneyRequest;
 use App\Models\Tournament;
 use Illuminate\Http\Request;
@@ -68,6 +69,8 @@ class TournamentController extends Controller
         $formFields = $request->validated();
         $formFields['end_date'] = $request['ending'];
         $tournament->update($formFields);
+
+        event(new FetchDetails($tournament));
         return back()->with('success', 'Tournament updated successfully.');
     }
 

@@ -4,6 +4,8 @@ import Alpine from 'alpinejs'
 import collapse from '@alpinejs/collapse'
 import PerfectScrollbar from 'perfect-scrollbar'
 
+import * as Vue from 'vue';
+
 window.PerfectScrollbar = PerfectScrollbar
 
 document.addEventListener('alpine:init', () => {
