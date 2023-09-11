@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/bootstrap.js'])
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script> --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
@@ -21,33 +21,36 @@
     </div>
 
     <script>
-        const app = new Vue({
+        const app = Vue.createApp({
             el: '#app',
             data: {
-                tournament: {!! $tournament->toJson() !!},
+                tournament: {},
+                current: {!! $tournament->toJson() !!},
                 details: {},
-            },
-            mounted() {
-                this.getDetails();
-                this.listen();
             },
             methods: {
                 getDetails() {
-                    axios.get(`/api/tournaments/${this.tournament.id}/details`)
+                    axios.get(`/api/tournaments/${this.current.id}/details`)
                         .then((response) => {
+                            console.log('hi')
                             this.details = response.data
                         })
                         .catch(function(error) {
                             console.log(error);
                         })
                 },
-                listen() {
-                    Echo.channel('tournament.'+this.tournament.id)
-                    .listen('FetchDetails', (tournament) => {
-                        this.tournament.name = tournament.name
+                listen: function() {
+                    window.Echo.channel('tournament.{{ $tournament->id }}').listen('FetchDetails', (
+                        tournament) => {
+                        console.log('hi')
                     });
                 }
-            }
+            },
+            mounted() {
+                console.log('hi there');
+                this.getDetails();
+                this.listen();
+            },
         });
     </script>
 

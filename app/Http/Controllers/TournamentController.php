@@ -68,9 +68,8 @@ class TournamentController extends Controller
     {
         $formFields = $request->validated();
         $formFields['end_date'] = $request['ending'];
-        $tournament->update($formFields);
-
-        event(new FetchDetails($tournament));
+        $updated = $tournament->update($formFields);
+        $event = event(new FetchDetails($tournament));
         return back()->with('success', 'Tournament updated successfully.');
     }
 

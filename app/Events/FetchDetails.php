@@ -36,10 +36,4 @@ class FetchDetails implements ShouldBroadcastNow
             new Channel('tournament.' . $this->tournament->id),
         ];
     }
-
-    public function broadcastWith() {
-        return [
-            'title' => $this->tournament->name
-        ];
-    }
 }

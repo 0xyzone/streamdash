@@ -1,10 +1,10 @@
 import './bootstrap'
-
+import * as Vue from 'vue/dist/vue.esm-bundler';
 import Alpine from 'alpinejs'
 import collapse from '@alpinejs/collapse'
 import PerfectScrollbar from 'perfect-scrollbar'
 
-import * as Vue from 'vue';
+window.Vue = Vue;
 
 window.PerfectScrollbar = PerfectScrollbar
 
