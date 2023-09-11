@@ -33,8 +33,8 @@ class TournamentController extends Controller
     public function store(TourneyRequest $request)
     {
         $formFields = $request->validated();
-        $formFields['end_date'] = $request['ending'];
-        dd($formFields);
+        $formFields['start_date'] = date('Y-m-d', strtotime($request['start_date']));
+        $formFields['end_date'] = date('Y-m-d', strtotime($request['ending']));
         if($request->hasFile('logo')){
             $formFields['logo'] = $request->file('logo')->store('logos','public');
         }
@@ -67,7 +67,8 @@ class TournamentController extends Controller
     public function update(TourneyRequest $request, Tournament $tournament)
     {
         $formFields = $request->validated();
-        $formFields['end_date'] = $request['ending'];
+        $formFields['start_date'] = date('Y-m-d', strtotime($request['start_date']));
+        $formFields['end_date'] = date('Y-m-d', strtotime($request['ending']));
         $updated = $tournament->update($formFields);
         $event = event(new FetchDetails($tournament));
         return back()->with('success', 'Tournament updated successfully.');
