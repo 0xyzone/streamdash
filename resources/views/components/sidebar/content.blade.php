@@ -16,6 +16,12 @@
         </x-slot>
     </x-sidebar.link>
 
+    <x-sidebar.link title="Casters" href="{{ route('casters.index') }}" :isActive="request()->routeIs(['casters.index', 'casters.create', 'casters.edit'])">
+        <x-slot name="icon">
+            <x-heroicon-o-microphone class="flex-shrink-0 w-6 h-6" aria-hidden="true" />
+        </x-slot>
+    </x-sidebar.link>
+
     <x-sidebar.dropdown title="Buttons" :active="Str::startsWith(
         request()
             ->route()

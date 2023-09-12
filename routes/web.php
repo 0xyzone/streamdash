@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AjaxController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\SceneController;
+use App\Http\Controllers\CasterController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TournamentController;
 
 /*
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/tournaments', TournamentController::class);
+    Route::resource('/casters', CasterController::class);
 });
 
 // useless routes

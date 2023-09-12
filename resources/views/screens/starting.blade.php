@@ -11,10 +11,10 @@
                 class="w-4/12 aspect-square object-cover absolute top-44 left-12" id="logo">
         @endif
     </div>
-    <div class="w-8/12 h-screen absolute top-[80%] left-[40%] rotate-[-25deg]"
+    <div class="w-10/12 h-screen absolute top-[100%] left-[50%] rotate-[-25deg] "
         style="background-color: @{{ tournament.color }} ;" id="span2">
     </div>
-    <div class="w-8/12 h-screen absolute top-[80%] left-[42%] rotate-[-10deg] opacity-50 animate-pulse"
+    <div class="w-10/12 h-screen absolute top-[95%] left-[52%] rotate-[-10deg] opacity-50 animate-pulse"
         style="background-color: @{{ tournament.color }} ;" id="span3">
 
     </div>
