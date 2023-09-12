@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\FetchDetails;
-use App\Http\Requests\TourneyRequest;
 use App\Models\Tournament;
+use App\Events\FetchDetails;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Validator;
+use App\Http\Requests\TourneyRequest;
+use Illuminate\Support\Facades\Storage;
 
 class TournamentController extends Controller
 {
@@ -69,6 +70,14 @@ class TournamentController extends Controller
         $formFields = $request->validated();
         $formFields['start_date'] = date('Y-m-d', strtotime($request['start_date']));
         $formFields['end_date'] = date('Y-m-d', strtotime($request['ending']));
+        if($request->hasFile('logo')){
+            $path = $request->file('logo')->store('logos','public');
+            if($oldAvatar = $tournament->logo){
+                Storage::disk('public')->delete($oldAvatar);
+            };
+            $formFields['logo'] = $path;
+        }
+        
         $updated = $tournament->update($formFields);
         $event = event(new FetchDetails($tournament));
         return back()->with('success', 'Tournament updated successfully.');

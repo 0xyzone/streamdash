@@ -24,9 +24,9 @@ class TourneyRequest extends FormRequest
         return [
             'name' => 'required',
             'start_date' => 'required',
-            'ending' => 'required|date|after:start_date',
+            'ending' => 'required|date|after_or_equal:start_date',
             'color' => '',
-            'logo' => 'image'
+            'logo' => ''
         ];
     }
 

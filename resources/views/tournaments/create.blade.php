@@ -59,17 +59,31 @@
                 @enderror
             </div>
         </div>
-        <div class="flex gap-6">
-            <fieldset class="border-2 rounded-lg w-max p-2">
+        <div class="flex gap-6 items-center">
+            <fieldset class="border-2 rounded-lg h-full px-2 pt-1 pb-2">
                 <legend class="px-2">Theme Color</legend>
                 <input type="color" name="color" id="color"
-                    class="w-full bg-transparent border-none focus:ring-0 outline-none"
+                    class="w-full h-12 bg-transparent border-none focus:ring-0 outline-none"
                     value="{{ old('color') ?? '#673AB7' }}">
             </fieldset>
-            <fieldset class="border-2 rounded-lg w-max p-2">
+            <fieldset class="border-2 rounded-lg w-max p-2 pb-3">
                 <legend class="px-2">Logo</legend>
                 <input type="file" name="logo" id="logo">
             </fieldset>
+            <img id="preview" src="#" alt="your image" class="h-20 aspect-square object-cover rounded-lg"
+                style="display:none;" onclick="$('#logo').trigger('click')" />
+            @push ('scripts') 
+                <script>
+                    logo.onchange = evt => {
+                        preview = document.getElementById('preview');
+                        preview.style.display = 'block';
+                        const [file] = logo.files
+                        if (file) {
+                            preview.src = URL.createObjectURL(file)
+                        }
+                    }
+                </script>
+            @endpush
         </div>
         <x-button variant="primary" size="base" class="items-center gap-2 w-max">
             <x-eos-add-circle-o aria-hidden="true" class="w-6 h-6" />

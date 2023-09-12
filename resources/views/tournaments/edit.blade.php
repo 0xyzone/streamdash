@@ -12,15 +12,16 @@
             </x-button>
         </div>
     </x-slot>
-    <form action="{{ route('tournaments.update', $tournament) }}" method="post" class="flex flex-col gap-6">
+    <form action="{{ route('tournaments.update', $tournament) }}" method="post" class="flex flex-col gap-6"
+        enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
         <div class="logo">
-            <img src="{{ $tournament->logo ? asset('storage/' . $tournament->logo) : '' }}" alt="logo"
-                class="w-32 rounded-lg aspect-square object-cover">
+            <img src="{{ $tournament->logo ? asset('storage/' . $tournament->logo) : asset('storage/img/symbol.png') }}"
+                alt="logo" class="w-32 rounded-lg aspect-square object-cover" onclick="$('#logo').trigger('click')">
         </div>
-        <fieldset class="border-2 rounded-lg w-6/12">
+        <fieldset class="border-2 rounded-lg w-full lg:w-6/12">
             <legend class="px-2 ml-2">Name</legend>
             <input type="text" name="name" id="name"
                 class="w-full bg-transparent border-none focus:ring-0 outline-none" autofocus="on" autocomplete="off"
@@ -64,13 +65,38 @@
                 @enderror
             </div>
         </div>
-
-        <fieldset class="border-2 rounded-lg w-max p-2">
-            <legend class="px-2">Theme Color</legend>
-            <input type="color" name="color" id="color"
-                class="w-full bg-transparent border-none focus:ring-0 outline-none"
-                value="{{ old('color') ?? $tournament->color }}">
-        </fieldset>
+        <div class="flex flex-col md:flex-row gap-6 h-max md:items-center">
+            <fieldset class="border-2 rounded-lg h-full px-2 pt-1 pb-2">
+                <legend class="px-2 h-full">Theme Color</legend>
+                <input type="color" name="color" id="color"
+                    class="w-full h-12 bg-transparent border-none focus:ring-0 outline-none rounded-lg overflow-hidden"
+                    value="{{ old('color') ?? $tournament->color }}">
+                @error('color')
+                    <p class="text-red-500 px-2 py-1">{{ $message }}</p>
+                @enderror
+            </fieldset>
+            <fieldset class="border-2 rounded-lg w-max p-2 pb-3">
+                <legend class="px-2">Update Logo</legend>
+                <input type="file" name="logo" id="logo">
+                @error('logo')
+                    <p class="text-red-500 px-2 py-1">{{ $message }}</p>
+                @enderror
+            </fieldset>
+            <img id="preview" src="#" alt="your image" class="h-20 aspect-square object-cover rounded-lg"
+                style="display:none;" onclick="$('#logo').trigger('click')" />
+            @push('scripts')
+                <script>
+                    logo.onchange = evt => {
+                        preview = document.getElementById('preview');
+                        preview.style.display = 'block';
+                        const [file] = logo.files
+                        if (file) {
+                            preview.src = URL.createObjectURL(file)
+                        }
+                    }
+                </script>
+            @endpush
+        </div>
         <x-button variant="primary" size="base" class="items-center gap-2 w-max">
             <x-eos-add-circle-o aria-hidden="true" class="w-6 h-6" />
             <span>Update</span>

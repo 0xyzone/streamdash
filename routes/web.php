@@ -54,5 +54,6 @@ Route::get('/demo', function() {
 require __DIR__ . '/auth.php';
 
 Route::get('/start/{tournament}', [SceneController::class, 'start'])->name('start');
+Route::get('/caster/{tournament}', [SceneController::class, 'caster'])->name('caster');
 
 Route::get('/ajax/start/tournamentdetails/{tournament}', [AjaxController::class, 'FetchDetails']);
