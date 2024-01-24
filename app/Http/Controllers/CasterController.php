@@ -21,7 +21,7 @@ class CasterController extends Controller
      */
     public function create()
     {
-        //
+        return view('casters.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class CasterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Caster $caster)
     {
         //
     }
@@ -43,15 +43,15 @@ class CasterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Caster $caster)
     {
-        //
+        return view('casters.edit', compact('caster'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Caster $caster)
     {
         //
     }
@@ -59,7 +59,7 @@ class CasterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Caster $caster)
     {
         //
     }

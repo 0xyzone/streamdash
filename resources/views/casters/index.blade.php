@@ -27,7 +27,7 @@
                     <td class="text-center">{{ date('jS M, Y', strtotime($caster->updated_at)) }}</td>
                     <td>
                         <div class="flex justify-center items-center gap-2">
-                            <a href="{{ route('tournaments.edit', $caster->id) }}">
+                            <a href="{{ route('casters.edit', $caster->id) }}">
                                 <x-eos-edit-o class="w-6 h-6 hover:cursor-pointer hover:text-purple-500" />
                             </a>
                         </div>

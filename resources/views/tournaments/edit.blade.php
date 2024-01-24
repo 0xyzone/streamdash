@@ -21,8 +21,8 @@
             <img src="{{ $tournament->logo ? asset('storage/' . $tournament->logo) : asset('storage/img/symbol.png') }}"
                 alt="logo" class="w-32 rounded-lg aspect-square object-cover" onclick="$('#logo').trigger('click')">
         </div>
-        <fieldset class="border-2 rounded-lg w-full lg:w-6/12">
-            <legend class="px-2 ml-2">Name</legend>
+        <fieldset class="border-2 rounded-lg w-full lg:w-6/12 pb-2">
+            <legend class="px-2 ml-2"><label for="name">Name</label></legend>
             <input type="text" name="name" id="name"
                 class="w-full bg-transparent border-none focus:ring-0 outline-none" autofocus="on" autocomplete="off"
                 value="{{ old('name') ?? $tournament->name }}">
@@ -97,6 +97,20 @@
                 </script>
             @endpush
         </div>
+        <fieldset class="border-2 rounded-lg w-full lg:w-6/12 pb-2">
+            <legend class="px-2 ml-2"><label for="game">Game</label></legend>
+            <select name="game" id="game" class="w-full bg-transparent border-none focus:ring-0 outline-none">
+                <option value="Dota" @if ($tournament->game == 'Dota' || old('game') == 'Dota') selected @endif class="bg-gray-900">Dota</option>
+                <option value="MLBB" @if ($tournament->game == 'MLBB' || old('game') == 'MLBB') selected @endif class="bg-gray-900">MLBB</option>
+                <option value="PUBG" @if ($tournament->game == 'PUBG' || old('game') == 'PUBG') selected @endif class="bg-gray-900">PUBG</option>
+                <option value="CS" @if ($tournament->game == 'CS' || old('game') == 'CS') selected @endif class="bg-gray-900">CS</option>
+                <option value="StreetFighter" @if ($tournament->game == 'StreetFighter' || old('game') == 'StreetFighter') selected @endif class="bg-gray-900">StreetFighter</option>
+                <option value="eFootball" @if ($tournament->game == 'eFootball' || old('game') == 'eFootball') selected @endif class="bg-gray-900">eFootball</option>
+            </select>
+            @error('game')
+                <p class="text-red-500 px-2 py-1">{{ $message }}</p>
+            @enderror
+        </fieldset>
         <x-button variant="primary" size="base" class="items-center gap-2 w-max">
             <x-eos-add-circle-o aria-hidden="true" class="w-6 h-6" />
             <span>Update</span>

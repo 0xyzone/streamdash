@@ -22,7 +22,7 @@
     <script type="module">
         window.Echo.channel('tournament.{{ $tournament->id }}').listen('FetchDetails', (tournament) => {
             console.log(tournament);
-            $("#update").html(tournament.tournament.name);
+            $("#update").html(tournament.tournament.name );
             $("#span").css('background', tournament.tournament.color);
             $("#span2").css('background', tournament.tournament.color);
             $("#span3").css('background', tournament.tournament.color);
