@@ -5,8 +5,6 @@ namespace App\Events;
 use App\Models\Tournament;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -36,4 +34,16 @@ class FetchDetails implements ShouldBroadcastNow
             new Channel('tournament.' . $this->tournament->id),
         ];
     }
+
+    // public function broadcastAs()
+    // {
+    //     return 'tournament' . $this->tournament->id;
+    // }
+
+    // public function broadcastWith()
+    // {
+    //     return [
+    //         $this->tournament,
+    //     ];
+    // }
 }
