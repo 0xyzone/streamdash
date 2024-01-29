@@ -27,7 +27,7 @@ class TourneyRequest extends FormRequest
             'start_date' => 'required',
             'ending' => 'required|date|after_or_equal:start_date',
             'color' => '',
-            'logo' => ''
+            'logo' => 'dimensions:ratio=1/1'
         ];
     }
 
@@ -35,7 +35,8 @@ class TourneyRequest extends FormRequest
     {
         return [
             'ending.required' => 'The end date field is required',
-            'ending.after' => 'The ending date should be later than the start date.'
+            'ending.after' => 'The ending date should be later than the start date.',
+            'logo.dimensions' => 'Logo image should have 1:1 ratio dimenstions.',
         ];
     }
 }

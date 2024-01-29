@@ -12,14 +12,21 @@
             </x-button>
         </div>
     </x-slot>
+    <button class="btn">Button</button>
+    <span class="countdown font-mono text-2xl">
+        <span style="--value:10;"></span>h
+        <span style="--value:24;"></span>m
+        <span style="--value:49;"></span>s
+    </span>
     <table class="table w-full">
         <thead>
             <tr class="dark:bg-gray-800 bg-gray-400">
                 <th class="w-1/12 py-2">#</th>
                 <th class="w-5/12 text-left">Tournament Name</th>
+                <th class="w-1/12">Game</th>
                 <th class="w-2/12">Starts At</th>
                 <th class="w-2/12">Ends On</th>
-                <th class="w-2/12">Action</th>
+                <th class="w-1/12">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +34,7 @@
                 <tr class="odd:dark:bg-gray-600 even:dark:bg-gray-700 odd:bg-gray-200 even:bg-gray-300">
                     <td class="text-center py-2">{{ $tourney->id }}</td>
                     <td>{{ $tourney->name }}</td>
+                    <td class="text-center">{{ $tourney->game }}</td>
                     <td class="text-center">{{ date('jS M, Y', strtotime($tourney->start_date)) }}</td>
                     <td class="text-center">{{ date('jS M, Y', strtotime($tourney->end_date)) }}</td>
                     <td>
