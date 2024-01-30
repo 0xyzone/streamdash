@@ -7,10 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-        StreamDash @hasSection ('pageTitle') 
+        StreamDash @hasSection('pageTitle')
             ● @yield('pageTitle')
-        @else 
-        
+        @else
         @endif
     </title>
 
