@@ -1,14 +1,20 @@
 <x-screens>
-    <div class="absolute top-20 left-0 flex items-center h-32 overflow-visible bg-black/50" id="details">
+    <div class="absolute bottom-20 left-0 flex items-center h-32 overflow-visible bg-black/50" id="details">
         <div class="w-5 h-full" style="background-color: @{{ tournament.color }} ;" id="span">
         </div>
         @if ($tournament->logo != '')
-            <img src="{{ asset('/storage/' . $tournament->logo) }}" alt=""
-                class="h-64 aspect-square object-cover mx-4 -py-4" id="logo">
+        <img src="{{ asset('/storage/' . $tournament->logo) }}" alt="" class="h-64 aspect-square object-cover mx-4 -py-4" id="logo">
         @endif
         {{-- <h1 class="font-bold text-6xl text-white px-10" id="update">{{ $tournament->name ?? 'No Name Set' }}</h1> --}}
         <h1 class="font-bold text-6xl text-white pr-10" id="update">@{{ tournament.name }}</h1>
     </div>
+    <iframe allow="autoplay" src="https://vdo.ninja/?view=caster1&solo&room=NesaPortal&cleanoutput"></iframe>
+    @foreach ($casters as $caster)
+    @if ($caster->link === '')
+    @continue
+    @endif
+    {{-- <iframe allow="autoplay;camera;microphone;fullscreen;picture-in-picture;display-capture;midi;geolocation;gyroscope;" src="{{ $caster->link . '&autostart' }}" class="absolute top-52"></iframe> --}}
+    @endforeach
     <script type="module">
         window.Echo.channel('tournament.{{ $tournament->id }}').listen('FetchDetails', (tournament) => {
             console.log(tournament);
