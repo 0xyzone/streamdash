@@ -79,7 +79,7 @@ class TournamentController extends Controller
         }
         
         $updated = $tournament->update($formFields);
-        $event = event(new FetchDetails($tournament));
+        $event = event(new FetchDetails($tournament));  
         return back()->with('success', 'Tournament updated successfully.');
     }
 

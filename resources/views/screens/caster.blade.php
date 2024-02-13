@@ -8,7 +8,6 @@
         {{-- <h1 class="font-bold text-6xl text-white px-10" id="update">{{ $tournament->name ?? 'No Name Set' }}</h1> --}}
         <h1 class="font-bold text-6xl text-white pr-10" id="update">@{{ tournament.name }}</h1>
     </div>
-    <iframe allow="autoplay" src="https://vdo.ninja/?view=caster1&solo&room=NesaPortal&cleanoutput"></iframe>
     @foreach ($casters as $caster)
     @if ($caster->link === '')
     @continue

@@ -2,16 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TournamentResource\Pages;
-use App\Filament\Resources\TournamentResource\RelationManagers;
-use App\Models\Tournament;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Forms\Components\TextInput;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Tournament;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ColorColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\TournamentResource\Pages;
+use App\Filament\Resources\TournamentResource\RelationManagers;
 
 class TournamentResource extends Resource
 {
@@ -23,7 +28,9 @@ class TournamentResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                ->label('Tournament Name')
+                ->prefixIcon('heroicon-o-trophy')
             ]);
     }
 
@@ -31,7 +38,9 @@ class TournamentResource extends Resource
     {
         return $table
             ->columns([
-                //
+                ImageColumn::make('logo'),
+                TextColumn::make('name'),
+                ColorColumn::make('color')
             ])
             ->filters([
                 //
