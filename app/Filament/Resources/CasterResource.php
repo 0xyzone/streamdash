@@ -5,21 +5,28 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Caster;
+use Filament\Forms\Set;
 use Filament\Forms\Form;
+use App\Models\Tournament;
 use Filament\Tables\Table;
+use App\Events\FetchDetails;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Infolists\Components\TextEntry;
 use App\Filament\Resources\CasterResource\Pages;
+use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\CasterResource\RelationManagers;
 
 class CasterResource extends Resource
 {
     protected static ?string $model = Caster::class;
+
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
@@ -35,7 +42,7 @@ class CasterResource extends Resource
                 ->image()
                 ->imageEditor()
                 ->required()
-                ->imagePreviewHeight('250')
+                ->imagePreviewHeight('250'),
             ]);
     }
 
@@ -43,9 +50,11 @@ class CasterResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('image'),
                 TextColumn::make('name')
                 ->sortable()
-                ->searchable()
+                ->searchable(),
+                TextColumn::make('link')
             ])
             ->filters([
                 //

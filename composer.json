@@ -11,6 +11,7 @@
         "php": "^8.1",
         "beyondcode/laravel-websockets": "^1.14",
         "codeat3/blade-eos-icons": "^1.13",
+        "davidhsianturi/blade-bootstrap-icons": "^1.4",
         "filament/filament": "3.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/breeze": "^1.23",
