@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
+use App\Models\Game;
 use Filament\Tables;
 use Filament\Forms\Set;
 use Filament\Forms\Form;
@@ -47,13 +48,17 @@ class TournamentResource extends Resource
                     ->prefixIcon('heroicon-o-eye-dropper'),
                 Select::make('game')
                     ->label('Tournament Game')
-                    ->options([
-                        'dota' => 'Dota 2',
-                        'cs2' => 'Counter Strike 2',
-                        'mlbb' => 'Mobile Legends Bang Bang',
-                        'efootball' => 'eFootball 2023',
-                        'pubgm' => 'PUBG Mobile',
-                    ])
+                    ->options(function () {
+                        $games = Game::all();
+
+                        $gameName[] = "";
+                        foreach ($games as $game) {
+                            $gameName[] = [
+                                'name' => $game['name']
+                            ];
+                        }
+                        return $gameName;
+                    })
                     ->prefixIcon('bi-controller'),
                 DatePicker::make('start_date')
                     ->prefixIcon('heroicon-o-calendar-days'),

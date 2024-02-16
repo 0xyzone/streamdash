@@ -7,7 +7,7 @@
         @endif
         <h1 class="font-bold text-6xl text-white pr-10" id="name">@{{ tournament.name }}</h1>
     </div>
-    <div class="flex w-full absolute top-10 ">
+    <div class="flex w-full absolute top-10">
         <div class="w-6/12">
             <div class="caster w-6/12 py-4 pl-4 flex items-center font-esports text-3xl font-bold" style="background-color: @{{ tournament.color }} ;">
                 {{ $casters[0]['name'] }}
