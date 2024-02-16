@@ -2,24 +2,33 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Team;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Http;
-use Sushi\Sushi;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Game extends Model
 {
-    use Sushi;
+    use HasFactory;
 
-    protected $rows = [
+    protected $fillable =
         [
-            'abbr' => 'NY',
-            'name' => 'New York',
-        ],
+            'name',
+            'slug',
+            'game_logo_path',
+        ];
+
+    protected $appends =
         [
-            'abbr' => 'CA',
-            'name' => 'California',
-        ],
-    ];
+            'game_logo_url'
+        ];
+
+    public function getGameLogoUrlAttribute()
+    {
+        return $this->game_logo_path ? url('storage/' . $this->game_logo_path) : null;
+    }
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
 }

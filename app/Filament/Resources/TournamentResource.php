@@ -48,17 +48,9 @@ class TournamentResource extends Resource
                     ->prefixIcon('heroicon-o-eye-dropper'),
                 Select::make('game')
                     ->label('Tournament Game')
-                    ->options(function () {
-                        $games = Game::all();
-
-                        $gameName[] = "";
-                        foreach ($games as $game) {
-                            $gameName[] = [
-                                'name' => $game['name']
-                            ];
-                        }
-                        return $gameName;
-                    })
+                    ->options([
+                        'dota' => 'Dota'
+                    ])
                     ->prefixIcon('bi-controller'),
                 DatePicker::make('start_date')
                     ->prefixIcon('heroicon-o-calendar-days'),
