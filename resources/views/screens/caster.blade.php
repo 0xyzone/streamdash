@@ -12,7 +12,8 @@
             <div class="caster w-6/12 py-4 pl-4 flex items-center font-esports text-3xl font-bold" style="background-color: @{{ tournament.color }} ;">
                 {{ $casters[0]['name'] }}
             </div>
-            <div class="w-full aspect-video bg-green-500 border-4"></div>
+            <div class="w-full aspect-video bg-green-500 border-4">
+            </div>
         </div>
         <div class="w-6/12 flex flex-col items-end">
             <div class="caster w-6/12 py-4 pr-4 flex items-center justify-end font-esports text-3xl font-bold" style="background-color: @{{ tournament.color }} ;">

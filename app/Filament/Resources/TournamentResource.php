@@ -48,9 +48,7 @@ class TournamentResource extends Resource
                     ->prefixIcon('heroicon-o-eye-dropper'),
                 Select::make('game')
                     ->label('Tournament Game')
-                    ->options([
-                        'dota' => 'Dota'
-                    ])
+                    ->options(Game::all()->pluck('name'))
                     ->prefixIcon('bi-controller'),
                 DatePicker::make('start_date')
                     ->prefixIcon('heroicon-o-calendar-days'),
@@ -96,6 +94,7 @@ class TournamentResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('logo'),
                 ImageColumn::make('logo'),
                 TextColumn::make('name'),
                 ColorColumn::make('color'),

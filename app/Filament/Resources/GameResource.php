@@ -9,6 +9,8 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use App\Filament\Imports\GameImporter;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\GameResource\Pages;
@@ -37,7 +39,14 @@ class GameResource extends Resource
                     ->importer(GameImporter::class)
             ])
             ->columns([
-                //
+                TextColumn::make('id')
+                ->label('#')
+                ->grow(false)
+                ->searchable(),
+                ImageColumn::make('game_logo_url')
+                ->width('5rem')
+                ->height('auto'),
+                TextColumn::make('name')
             ])
             ->filters([
                 //
